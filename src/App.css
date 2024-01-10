@@ -2,9 +2,45 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-color: rgb(210, 168, 30);
+  min-height: 100vh;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+footer, nav ul {
+  background-color: #dddddd;
+}
+
+nav li, span {
+  display: inline;
+  padding: 10px;
+}
+
+footer {
+ position: absolute;
+ bottom: 0;
+ width: 100%;
+}
+
+footer p {
+  margin: 10px 0px;
+}
+
+.menu-left {
+  float:left;
+}
+
+.menu-right {
+  float: right;
+  /* margin-left: auto; */
 }
 
 @media (prefers-reduced-motion: no-preference) {
