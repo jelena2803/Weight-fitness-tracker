@@ -100,6 +100,10 @@ input:focus {
   box-shadow: rgba(210, 168, 30) 0px 6px 12px -2px, rgb(210, 168, 30) 0px 3px 7px -3px;
 }
 
+.profile-data {
+  margin: 15px 20px;
+  text-align: center;
+}
 
 /* .App-header {
   background-color: #282c34;
