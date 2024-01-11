@@ -4,11 +4,12 @@ import Footer from "./components/Footer";
 import CompleteProfile from "./components/CompleteProfile";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import Profile from "./components/Profile";
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/newprofile",
     element: <CompleteProfile/>,
+  },
+  {
+    path: "/profile",
+    element: <Profile/>,
   },
 ]);
 
