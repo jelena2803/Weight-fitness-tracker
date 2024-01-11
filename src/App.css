@@ -41,7 +41,7 @@ nav li, span {
 }
 
 footer {
- position: relative;
+ position: absolute;
  bottom: 0; 
  height: 40px;
  width: 100%;
@@ -81,6 +81,10 @@ border: none;
   cursor: pointer;
   padding: 15px;
   font-weight: bold;
+}
+
+button:hover {
+  scale: 1.05;
 }
 
 .init-profile-form input, label {
