@@ -1,3 +1,14 @@
+html {
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   text-align: center;
 }
@@ -24,14 +35,17 @@ nav li, span {
   padding: 10px;
 }
 
-footer {
- position: absolute;
- bottom: 0;
- width: 100%;
+.menu-right li:hover {
+  color: rgb(210, 168, 30);
+  cursor: pointer;
 }
 
-footer p {
-  margin: 10px 0px;
+footer {
+ position: relative;
+ bottom: 0; 
+ height: 40px;
+ width: 100%;
+ padding: 10px;
 }
 
 .menu-left {
@@ -43,13 +57,49 @@ footer p {
   /* margin-left: auto; */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.profile-form {
+  background-color: #dddddd;
+  width: 500px;
+  margin: 100px auto;
+  border-radius: 8px;
+  padding: 5px;
 }
 
-.App-header {
+.profile-form, input {
+border-radius: 8px;
+border: none;
+}
+
+.init-profile-form div, button {
+  margin: 15px;
+}
+
+.profile-form button {
+  border-radius: 10px;
+  border: none;
+  background-color: rgb(210, 168, 30);
+  cursor: pointer;
+  padding: 15px;
+  font-weight: bold;
+}
+
+.init-profile-form input, label {
+  padding: 10px;
+}
+
+.profile-form, button, input {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+input:focus {
+  /* background-color: rgb(210, 168, 30); */
+  /* border: none; */
+  outline: none;
+  box-shadow: rgba(210, 168, 30) 0px 6px 12px -2px, rgb(210, 168, 30) 0px 3px 7px -3px;
+}
+
+
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -58,17 +108,17 @@ footer p {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 
-.App-link {
+/* .App-link {
   color: #61dafb;
-}
+} */
 
-@keyframes App-logo-spin {
+/* @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
-}
+} */
