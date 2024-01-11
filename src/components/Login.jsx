@@ -17,6 +17,8 @@ function Login() {
                 </div>
 
                 <button>Log in</button>
+
+                <p>Don't have an account? You need to sign up.</p>
             </div>
         
     );
