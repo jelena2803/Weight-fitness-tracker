@@ -15,6 +15,8 @@ function Signup() {
                 </div>
 
                 <button>Sign up</button>
+
+                <p>Already have an account? Log in</p>
             </div>
     );
 }
