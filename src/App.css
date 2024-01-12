@@ -11,6 +11,10 @@ html {
 
 .App {
   text-align: center;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  /* gap: 3rem; */
 }
 
 body {
@@ -55,8 +59,24 @@ nav li a:visited {
   cursor: pointer;
 }
 
+.weight-container, .fitness-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 15px 0px;
+  row-gap: 10px;
+}
+
+.title {
+  font-weight: bold;
+}
+
+hr {
+  grid-column: 1 / span 3;
+}
+
+
 footer {
- position: absolute;
+ /* position: absolute; */
  bottom: 0; 
  height: 40px;
  width: 100%;
@@ -69,6 +89,7 @@ footer {
 
 .menu-right {
   float: right;
+  margin-right: 10px;
 }
 
 .profile-form {
