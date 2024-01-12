@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 
 function Login() {
     return (
-    
-
             <div className="profile-form">
                 <div className="init-profile-form">
                     <div>
