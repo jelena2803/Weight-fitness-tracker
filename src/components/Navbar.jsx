@@ -10,8 +10,10 @@ function Navbar() {
         <span className="menu-right">
           <li> <NavLink to={"/profile"} className={({isActive}) =>
     isActive ? "active" : "inactive"}> Profile </NavLink></li>
-          <li>Weight</li>
-          <li>Fitness</li>
+          <li><NavLink to={"/weight"} className={({isActive}) =>
+    isActive ? "active" : "inactive"}>Weight</NavLink>  </li>
+          <li><NavLink to={"/fitness"} className={({isActive}) =>
+    isActive ? "active" : "inactive"}>Fitness</NavLink>  </li>
           <li>Nutrition</li>
           <li> <NavLink to={"/login"} className={({isActive}) =>
     isActive ? "active" : "inactive"}>Log in</NavLink>  </li>
