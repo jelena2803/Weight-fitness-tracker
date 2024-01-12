@@ -7,12 +7,13 @@ import Signup from "./components/Signup";
 import Profile from "./components/Profile";
 import Fitness from "./components/Fitness";
 import Weight from "./components/Weight";
+import { Route,Routes } from 'react-router-dom';
 
 // import {
 //   BrowserRouter, createBrowserRouter,
 //   RouterProvider,
 // } from "react-router-dom";
-import { Route,Routes } from 'react-router-dom';
+
 
 // const router = createBrowserRouter([
 //   {
