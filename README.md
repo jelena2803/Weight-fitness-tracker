@@ -9,7 +9,7 @@ Simple app that aims to facilitate weight and fitness activity tracking for the 
 - [Screenshots](#screenshots)
 - [Setup](#setup)
 
-### Technologies
+## Technologies
 
 Project is created with:
 
@@ -18,14 +18,14 @@ Project is created with:
 - Mongo DB
 - Node JS
 
-### Features
+## Features
 
 Features to be added
 
-### Screenshots
+## Screenshots
 
 Screeenshots to be added
 
-### Setup
+## Setup
 
 To run this project.... more to be added
