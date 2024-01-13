@@ -7,7 +7,6 @@ function Profile() {
             <p className="profile-data">Gender:</p>
             <p className="profile-data">Age:</p>
             <p className="profile-data">Height:</p>
-            <p className="profile-data">BMI:</p>
 
             <div className="add-new-data">
                 <button>Add weight</button>
