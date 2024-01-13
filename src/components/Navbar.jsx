@@ -17,6 +17,7 @@ function Navbar() {
           <li>Nutrition</li>
           <li> <NavLink to={"/login"} className={({isActive}) =>
     isActive ? "active" : "inactive"}>Log in</NavLink>  </li>
+    <li> <NavLink to={"/login"} >Log out</NavLink>  </li>
         </span>
       </ul>
     </nav>
