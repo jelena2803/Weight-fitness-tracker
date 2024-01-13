@@ -6,8 +6,8 @@ function Signup() {
             <div className="profile-form">
                 <div className="init-profile-form">
                     <div>
-                        <label htmlFor="email">Your email:</label>
-                        <input type="email" id="email" placeholder="Enter your email" />
+                        <label htmlFor="username">Your username:</label>
+                        <input type="text" id="username" placeholder="Enter your username" />
                     </div>
                     <div>
                         <label htmlFor="password">Password:</label>
@@ -17,7 +17,7 @@ function Signup() {
 
                 <button>Sign up</button>
 
-                <p>Already have an account?  <Link to={`/login`}>Log in</Link></p>
+                <p>Already have an account? <Link to={`/login`}>Log in</Link></p>
             </div>
     );
 }
