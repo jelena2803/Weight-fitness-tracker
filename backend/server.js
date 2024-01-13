@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 app.use(express.json());
+const bcrypt = require("bcrypt");
 const cors = require("cors");
 app.use(
   cors({
@@ -70,9 +71,15 @@ app.post("/", async (req, res) => {
     if (checkUser !== null) {
       res.send("username already exists, you need to use different username");
     } else {
-      let newUser = await Users.create(req.body);
-      // Return the new user
-      res.send(newUser);
+      // hash the password with bcrypt
+      bcrypt.hash(req.body.password, 10, async (err, hash) => {
+        let newUser = {
+          username: req.body.username,
+          password: hash,
+        };
+        await Users.create(newUser);
+        res.send({ msg: "user created successfully" });
+      });
     }
   } catch (error) {
     // Handle any errors that may occur during the creation process
