@@ -37,14 +37,29 @@ const Weight = mongoose.model("Weight", {
   BMI: Number,
 });
 
-const Fitness = mongoose.model("Fitness", {
-  // userId: {
-  //   type: mongoose.SchemaTypes.ObjectId,
-  //   ref: "Users",
-  // },
-  date: { type: Date, default: Date.now },
-  activity: String,
-  duration: Number,
+const fitnessSchema = mongoose.Schema(
+  {
+    // userId: {
+    //   type: mongoose.SchemaTypes.ObjectId,
+    //   ref: "Users",
+    // },
+    date: { type: Date, default: Date.now },
+    activity: String,
+    duration: Number,
+  },
+  { timestamps: true }
+);
+const Fitness = mongoose.model("Fitness", fitnessSchema);
+
+// get all fitness data
+app.get("/fitness", async (req, res) => {
+  try {
+    const allActivities = await Fitness.find().sort({ createdAt: -1 });
+    res.send(allActivities);
+  } catch (error) {
+    // Handle any errors that may occur during the creation process
+    res.status(500).json({ error: "Failed to get activities" });
+  }
 });
 
 // get all users
@@ -54,7 +69,7 @@ app.get("/", async (req, res) => {
     res.send(allUsers);
   } catch (error) {
     // Handle any errors that may occur during the creation process
-    res.status(500).json({ error: "Failed to create a new todo" });
+    res.status(500).json({ error: "Failed to fetch all users" });
   }
 });
 
