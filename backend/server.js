@@ -118,12 +118,12 @@ app.post("/login", async (req, res) => {
     // check if the username is correct
     let user = await Users.findOne({ username: req.body.username });
     if (user === null) {
-      res.send("wrong username");
+      res.send({ msg: "wrong username" });
     } else {
       if (user.password === req.body.password) {
-        res.send({ msg: "user checked successfully" });
+        res.send({ msg: true });
       } else {
-        res.send({ msg: "wrong password" });
+        res.send({ msg: false });
       }
     }
   } catch (error) {
