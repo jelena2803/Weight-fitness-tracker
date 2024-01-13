@@ -95,8 +95,9 @@ app.put("/newprofile/:id", async (req, res) => {
       req.body
       // req.body.status == "pending" ? "done" : req.body.status
     );
-    // Return the message if todo is updated successfully
-    res.send(Users);
+    // Return the message if user is updated successfully
+    const updatedNewUserFinal = await Users.findOne({ _id: req.params.id });
+    res.send(updatedNewUserFinal);
   } catch (error) {
     // Handle any errors that may occur during the creation process
     res.status(500).json({ error: "Failed to update a new user" });
@@ -104,8 +105,9 @@ app.put("/newprofile/:id", async (req, res) => {
 });
 
 // show all the user's profile when profile is completed
-app.get("/newprofile", (req, res) => {
-  res.send("test newprofile");
+app.get("/newprofile/:id", async (req, res) => {
+  const userProfileCompleted = await Users.findOne({ _id: req.params.id });
+  res.send(userProfileCompleted);
 });
 
 app.get("/profile/:id", async (req, res) => {
@@ -127,11 +129,14 @@ app.post("/login", async (req, res) => {
     if (user === null) {
       res.send({ msg: "wrong username" });
     } else {
-      if (user.password === req.body.password) {
-        res.send({ msg: true });
-      } else {
-        res.send({ msg: false });
-      }
+      // if username exists, we check the password
+      bcrypt.compare(req.body.password, user.password, (err, result) => {
+        if (result) {
+          res.send({ msg: true });
+        } else {
+          res.send({ msg: false });
+        }
+      });
     }
   } catch (error) {
     // Handle any errors that may occur during the creation process
