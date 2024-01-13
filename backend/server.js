@@ -19,7 +19,7 @@ async function main() {
 }
 
 const Users = mongoose.model("Users", {
-  email: String,
+  username: String,
   password: String,
   age: Number,
   gender: String,
@@ -60,11 +60,20 @@ app.get("/", async (req, res) => {
 // new user upon signup
 app.post("/", async (req, res) => {
   try {
-    // create new user in db
-    const newUser = await Users.create(req.body);
+    // check if both username and password are sent
+    if (!req.body.username || !req.body.password) {
+      res.send({ msg: "please fill the missing data uf the user" });
+    }
 
-    // Return the new user
-    res.send(newUser);
+    // check if the same username already exists in th db, if not, create new user in db
+    const checkUser = await Users.findOne({ username: req.body.username });
+    if (checkUser !== null) {
+      res.send("username already exists, you need to use different username");
+    } else {
+      let newUser = await Users.create(req.body);
+      // Return the new user
+      res.send(newUser);
+    }
   } catch (error) {
     // Handle any errors that may occur during the creation process
     res.status(500).json({ error: "Failed to create a new todo" });
@@ -96,6 +105,31 @@ app.get("/profile/:id", async (req, res) => {
   let userId = req.params.id;
   let user = await Users.find(userId);
   res.send(user);
+});
+
+// log in process request
+app.post("/login", async (req, res) => {
+  try {
+    // check if both username and password are sent
+    if (!req.body.username || !req.body.password) {
+      res.send({ msg: "please fill the missing data uf the user" });
+    }
+
+    // check if the username is correct
+    let user = await Users.findOne({ username: req.body.username });
+    if (user === null) {
+      res.send("wrong username");
+    } else {
+      if (user.password === req.body.password) {
+        res.send({ msg: "user checked successfully" });
+      } else {
+        res.send({ msg: "wrong password" });
+      }
+    }
+  } catch (error) {
+    // Handle any errors that may occur during the creation process
+    res.status(500).json({ error: "Failed to create a new todo" });
+  }
 });
 
 // render all user's saved weight logs
