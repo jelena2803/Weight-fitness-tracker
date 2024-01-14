@@ -54,7 +54,7 @@ nav li a:visited {
   font-weight: bold;
 }
 
-.menu-right li:hover, .inactive:hover {
+.menu-right li:hover, .inactive:hover, .logout:hover{
   color: rgb(210, 168, 30);
   cursor: pointer;
 }
