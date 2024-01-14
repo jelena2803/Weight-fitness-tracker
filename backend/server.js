@@ -159,9 +159,27 @@ app.post("/login", async (req, res) => {
   }
 });
 
+// render all weight logs
+app.get("/weight", async (req, res) => {
+  const allWeightLogs = await Weight.find().sort({ date: -1 });
+  res.send(allWeightLogs);
+});
+
+// render all weight logs
+app.get("/fitness", async (req, res) => {
+  const allActivities = await Fitness.find();
+  res.send(allActivities);
+});
+
 // render all user's saved weight logs
 app.get("/weight/:id", (req, res) => {
   res.send("test weight");
+});
+
+// add a new weight log
+app.post("/weight", async (req, res) => {
+  const newWeight = await Weight.create(req.body);
+  res.send({ msg: "new weight log added" });
 });
 
 // add a new user's weight log
