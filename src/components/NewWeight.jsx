@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
 function NewWeight() {
+
+    const [newWeight, setNewWeight] = useState(null);
+
+    // function addNewWeight(){
+
+    // }
+
     return (
         <>
             <div className="init-profile-form">
