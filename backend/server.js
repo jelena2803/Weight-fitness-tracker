@@ -151,14 +151,14 @@ app.post("/login", async (req, res) => {
     // check if the username is correct
     let user = await Users.findOne({ username: req.body.username });
     if (user === null) {
-      res.send({ msg: "wrong username" });
+      res.send({ msg: "Wrong username, enter again your username" });
     } else {
       // if username exists, we check the password
       bcrypt.compare(req.body.password, user.password, (err, result) => {
         if (result) {
-          res.send({ msg: true });
+          res.send({ msg: "Successful login" });
         } else {
-          res.send({ msg: false });
+          res.send({ msg: "Wrong password, enter again your password" });
         }
       });
     }
