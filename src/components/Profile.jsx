@@ -14,9 +14,23 @@ function Profile() {
 
             <div className="add-new-data">
                 <NewWeight />
-                <button>Add weight</button>
-                <button>My weight log</button>
 
+                {/* <div className="weight-container">
+                <p className="item title">Date</p>
+                <p className="item title">Weight</p>
+                <p className="item title">BMI</p>
+                <hr />
+
+                {weightList.map((e)=> {
+                    return (
+                        <> <p className="item ">{e.date.split("T")[0]}</p>
+                        <p className="item ">{e.weight}</p>
+                        <p className="item ">{e.BMI}</p>
+                        </>
+                    )
+                }
+                )}
+            </div> */}
                 <hr />
 
                 <NewActivity />
