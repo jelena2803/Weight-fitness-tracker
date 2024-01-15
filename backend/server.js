@@ -27,15 +27,20 @@ const Users = mongoose.model("Users", {
   height: Number,
 });
 
-const Weight = mongoose.model("Weight", {
-  // userId: {
-  //   type: mongoose.SchemaTypes.ObjectId,
-  //   ref: "Users",
-  // },
-  date: { type: Date, default: Date.now },
-  weight: Number,
-  BMI: Number,
-});
+const weightSchema = mongoose.Schema(
+  {
+    // userId: {
+    //   type: mongoose.SchemaTypes.ObjectId,
+    //   ref: "Users",
+    // },
+    date: String,
+    weight: Number,
+    BMI: Number,
+  },
+  { timestamps: true }
+);
+
+const Weight = mongoose.model("Weight", weightSchema);
 
 const fitnessSchema = mongoose.Schema(
   {
@@ -161,7 +166,7 @@ app.post("/login", async (req, res) => {
 
 // render all weight logs
 app.get("/weight", async (req, res) => {
-  const allWeightLogs = await Weight.find().sort({ date: -1 });
+  const allWeightLogs = await Weight.find().sort({ createdAt: -1 });
   res.send(allWeightLogs);
 });
 
@@ -178,8 +183,9 @@ app.get("/weight/:id", (req, res) => {
 
 // add a new weight log
 app.post("/weight", async (req, res) => {
-  const newWeight = await Weight.create(req.body);
-  res.send({ msg: "new weight log added" });
+  const newWeight = req.body;
+  await Weight.create(newWeight);
+  res.send({ msg: "success" });
 });
 
 // add a new user's weight log
