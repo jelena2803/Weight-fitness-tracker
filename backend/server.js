@@ -97,6 +97,9 @@ app.post("/", async (req, res) => {
         let newUser = {
           username: req.body.username,
           password: hash,
+          age: req.body.age,
+          gender: req.body.gender,
+          height: req.body.height,
         };
         await Users.create(newUser);
         res.send({ msg: "user created successfully" });
