@@ -83,13 +83,14 @@ app.post("/", async (req, res) => {
   try {
     // check if both username and password are sent
     if (!req.body.username || !req.body.password) {
-      res.send({ msg: "please fill the missing data uf the user" });
+      res.send({ msg: "please fill the missing data of the user" });
     }
-
     // check if the same username already exists in th db, if not, create new user in db
     const checkUser = await Users.findOne({ username: req.body.username });
     if (checkUser !== null) {
-      res.send("username already exists, you need to use different username");
+      res.send({
+        msg: "username already exists, you need to use different username",
+      });
     } else {
       // hash the password with bcrypt
       bcrypt.hash(req.body.password, 10, async (err, hash) => {
@@ -103,7 +104,7 @@ app.post("/", async (req, res) => {
     }
   } catch (error) {
     // Handle any errors that may occur during the creation process
-    res.status(500).json({ error: "Failed to create a new todo" });
+    res.status(500).json({ error: "Failed to create a new user" });
   }
 });
 
