@@ -1,13 +1,18 @@
 import React from "react";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Weight() {
-
+    const navigate = useNavigate();
+    const [user, setUser] = useState({});
     let [weightList, setWeightList] = useState([]);
     let [currentDate, setCurrentDate] = useState("");
     let [currentWeight, setCurrentWeight] = useState(0);
     let [BMI, setBMI] = useState(0);
+    let token = localStorage.getItem("token");
+    const headers = { headers: { Authorization: "Bearer " + localStorage.getItem("token") } };
 
     // useEffect(() => {
     //     axios.get("http://localhost:3636/weight").then(({ data }) => {
@@ -17,16 +22,30 @@ function Weight() {
     // }, []);
 
     function getWeight() {
-        axios.get("http://localhost:3636/weight").then(({ data }) => {
-            // console.log(data);
-            setWeightList(data);
-        })
+        try {
+            console.log("weight requested front")
+            axios.get("http://localhost:3636/weight", { headers: { Authorization: `Bearer ${token}` } })
+                .then(({ data }) => {
+                    setWeightList(data);
+                    console.log(weightList);
+                })
+        } catch (error) {
+            console.log(error);
+        }
     }
+
+    function handleInputChange (e) {
+        setCurrentWeight(e.target.value);
+        calcBMI();
+        getCurrentDate();
+    }
+
 
     function calcBMI() {
         let kg = currentWeight;
-        let result = (kg / (1.52 * 1.52)).toFixed(1);
+        let result = (kg / (user.height * user.height)).toFixed(1);
         setBMI(result);
+        console.log("bmi", BMI);
     }
 
     function getCurrentDate() {
@@ -37,24 +56,39 @@ function Weight() {
         const year = today.getFullYear();
         const date = today.getDate();
         setCurrentDate(month + " " + date + " " + year);
-        return currentDate;
+        // return currentDate;
     }
 
     function addNewWeight() {
-        getCurrentDate();
-        calcBMI();
         axios.post("http://localhost:3636/weight", {
+            userId: user._id,
             date: currentDate,
             weight: currentWeight,
             BMI: BMI,
-        }).then((data) => {
-            getWeight();
+        }, headers).then(({ data }) => {
+            if (data) {
+                console.log("new weight sent");
+                getWeight();
+            }
+            else {
+                console.log(" new weight not sent")
+            }
+
         })
     }
 
     useEffect(() => {
-        getWeight();
+        if (localStorage.getItem("user")) {
+            setUser(JSON.parse(localStorage.getItem("user")));
+            getWeight();
+            // axios.get("http://localhost:3636/weight" + user._id).then(({ data }) => {
+            //     console.log(data);})
+        } else {
+            navigate("/login");
+        }
     }, []);
+
+
 
     return (
         <div className="profile-form ">
@@ -63,11 +97,11 @@ function Weight() {
                 <div className="init-profile-form">
                     <div>
                         <label htmlFor="weight">My new weight:</label>
-                        <input type="number" id="weight" placeholder="60" step="1" onChange={(e) => setCurrentWeight(e.target.value)} />
+                        <input type="number" id="weight" value={currentWeight} placeholder="60" step="1" onChange={(e) => handleInputChange(e)} />
                     </div>
                 </div>
                 <button onClick={() => { addNewWeight() }}>Add weight</button>
-                {/* <button>Add fitness activity</button> */}
+                <button> <NavLink to={"/fitness"} className={"logs"}> My activities </NavLink> </button>
             </div>
 
             <div className="weight-container">
