@@ -3,6 +3,11 @@ import { NavLink } from 'react-router-dom';
 // import { Link } from "react-router-dom";
 
 function Navbar() {
+
+  function logout() {
+    localStorage.clear();
+  }
+
   return (
     <nav>
       <ul>
@@ -17,7 +22,7 @@ function Navbar() {
           <li>Nutrition</li>
           <li> <NavLink to={"/login"} className={({isActive}) =>
     isActive ? "active" : "inactive"}>Log in</NavLink>  </li>
-    <li> <NavLink to={"/login"} className={({isActive}) =>
+    <li onClick={() => {logout()}}> <NavLink to={"/login"} className={({isActive}) =>
     isActive ? "logout" : "logout"}>Log out</NavLink>  </li>
         </span>
       </ul>
