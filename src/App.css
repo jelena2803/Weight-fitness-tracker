@@ -54,6 +54,16 @@ nav li a:visited {
   font-weight: bold;
 }
 
+.logs {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.logs:visited {
+  text-decoration: none;
+}
+
 .menu-right li:hover, .inactive:hover, .logout:hover{
   color: rgb(210, 168, 30);
   cursor: pointer;
