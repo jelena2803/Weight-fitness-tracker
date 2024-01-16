@@ -11,9 +11,16 @@ function Login() {
     const [error, setError] = useState("");
 
     function login() {
-        axios.post("http://localhost:3636/login", {username : username, password : password,})
+        axios.post("http://localhost:3636/login", {
+            username : username, 
+            password : password,
+        })
         .then(({data}) => {
-            if (data.msg === "Successful login") {
+            // console.log(data);
+            if (data.token) {
+                //save date in the local storage
+                localStorage.setItem("token", JSON.stringify(data.token));
+                localStorage.setItem("user", JSON.stringify(data.user));
                 //redirect the user to the login page
                 navigate("/profile");
             } else {
