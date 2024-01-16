@@ -43,7 +43,7 @@ function Weight() {
 
     function calcBMI() {
         let kg = currentWeight;
-        let result = (kg / (user.height * user.height)).toFixed(1);
+        let result = ((kg / (user.height * user.height)).toFixed(2))*10;
         setBMI(result);
         console.log("bmi", BMI);
     }
