@@ -20,10 +20,10 @@ function Profile() {
 
     return (
         <div className="profile-form">
-            <p className="profile-data">Username:  {user.username}</p>
-            <p className="profile-data">Gender:  {user.gender}</p>
-            <p className="profile-data">Age:  {user.age}</p>
-            <p className="profile-data">Height:  {user.height}</p>
+            <p className="profile-data">Username: {user.username}</p>
+            <p className="profile-data">Gender: {user.gender}</p>
+            <p className="profile-data">Age: {user.age}</p>
+            <p className="profile-data">Height: {user.height}</p>
 
             <hr />
 
