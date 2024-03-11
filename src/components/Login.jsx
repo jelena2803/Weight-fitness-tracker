@@ -10,13 +10,14 @@ function Login() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
-    function login() {
-        axios.post("http://localhost:3636/login", {
+    async function login() {
+        const res = await axios.post("http://localhost:3636/login", {
             username : username, 
             password : password,
+        }, {
+            withCredentials: true,
         })
         .then(({data}) => {
-            // console.log(data);
             if (data.token) {
                 //save date in the local storage
                 localStorage.setItem("token", JSON.stringify(data.token));
